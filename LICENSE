@@ -12,8 +12,7 @@ The MIT license above covers the code authored for this project. The repository
 also contains third-party files under their own terms (see the license header in
 each file):
 
-  startup_gcc.c        - Copyright (c) Texas Instruments Incorporated,
-                         BSD-3-Clause.
   device/TM4C123GH6PM.h, device/TM4C123.h, device/system_TM4C123.{c,h}
                        - from Keil's TM4C_DFP pack (Texas Instruments / Keil).
   device/cmsis_core/*  - ARM CMSIS core headers, Copyright (c) ARM Limited.
+  external/printf/*    - mpaland printf, Copyright (c) 2014 Marco Paland, MIT.
