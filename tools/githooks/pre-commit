@@ -1,0 +1,12 @@
+#!/bin/sh
+# Reject commits whose staged C sources aren't clang-format clean.
+# Enable once per clone with:  make hooks   (sets core.hooksPath)
+
+files=$(git diff --cached --name-only --diff-filter=ACM | grep -E '^src/.*\.(c|h)$')
+[ -z "$files" ] && exit 0
+
+if ! clang-format --dry-run --Werror $files; then
+    echo >&2
+    echo "Staged files are not clang-format clean. Run 'make format', then re-stage." >&2
+    exit 1
+fi
