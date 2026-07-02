@@ -1,4 +1,4 @@
-# tiva-c-bare
+# tiva-micromouse
 
 Bare-metal firmware for the **TM4C123GH6PM** on the **EK-TM4C123GXL Launchpad**,
 built from the command line with `arm-none-eabi-gcc` and flashed with
@@ -6,9 +6,8 @@ built from the command line with `arm-none-eabi-gcc` and flashed with
 device headers (struct style, e.g. `GPIOF->DATA`), so there is nothing external
 to install or point the build at.
 
-Right now it cycles the on-board RGB LED (PF1/PF2/PF3) through seven colors,
-driven by a periodic Timer1A interrupt — the starting point for the micromouse
-code.
+Controls two DC motors via a TB6612FNG driver with PWM (20 kHz), quadrature
+encoder feedback, and UART telemetry.
 
 ## Layout
 
@@ -22,7 +21,7 @@ code.
 │   └── cmsis_core/         ARM CMSIS core headers
 ├── docs/           pinout + board docs
 ├── external/       third-party code (mpaland/printf submodule + config)
-├── src/            application source (main.c for now)
+├── src/            application source
 └── tools/          helper scripts (githooks/pre-commit)
 ```
 
@@ -62,7 +61,7 @@ git submodule update --init
 ## Build & flash
 
 ```sh
-make          # -> build/bin/blinky.{axf,bin}  (objects in build/obj/)
+make          # -> build/bin/micromouse.{axf,bin}  (objects in build/obj/)
 make flash    # build + flash with lm4flash
 make size     # binary size
 make clean
